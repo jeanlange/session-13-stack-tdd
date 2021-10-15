@@ -28,4 +28,15 @@ describe Stack do
 
         expect(stack_emptiness).to be false
     end
+
+    it "can pop the top thing" do
+        my_stack = Stack.new
+        my_stack.push("walk the dog")
+        my_stack.push("walk the cat")
+
+        popped_thing = my_stack.pop 
+
+        # the thing I popped should be... a cat
+        expect(popped_thing).to eql "walk the cat"
+    end
 end

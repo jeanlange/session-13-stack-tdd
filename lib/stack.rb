@@ -14,4 +14,9 @@ class Stack
         # store it in @storage
         @storage << a_thing
     end
+
+    def pop
+        # return the 'top thing' on the stack
+        @storage.delete_at(-1)
+    end
 end
