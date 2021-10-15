@@ -1,13 +1,13 @@
 require 'stack'
 
 describe Stack do
-    it "can do rspec" do
-        expect([]).to be_truthy
-    end
+    # don't do this to share setup across tests!
+    # my_stack = Stack.new
+
+    let(:my_stack) { Stack.new }
 
     it "new stacks are empty" do
         # given - what is the initial state
-        my_stack = Stack.new
         # when - do the thing
         stack_emptiness = my_stack.empty?
         # then - check the thing
@@ -15,13 +15,11 @@ describe Stack do
     end
 
     it "can put something into the stack" do
-        my_stack = Stack.new
         my_stack.push("walk the dog")
         # then - it doesn't fail
     end
 
     it "stacks with stuff in them aren't empty" do
-        my_stack = Stack.new
         my_stack.push("walk the dog")
 
         stack_emptiness = my_stack.empty?
@@ -30,7 +28,6 @@ describe Stack do
     end
 
     it "can pop the top thing" do
-        my_stack = Stack.new
         my_stack.push("brush my teeth")
         my_stack.push("walk the cat")
 
@@ -38,6 +35,12 @@ describe Stack do
 
         # the thing I popped should be... a cat
         expect(popped_thing).to eql "walk the cat"
+    end
+
+    it "can pop all the things" do
+        my_stack.push("a thing")
+        my_stack.pop
+        expect(my_stack).to be_empty
     end
 
     it "pops nil off of an empty stack" do
