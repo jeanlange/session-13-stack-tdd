@@ -1,22 +1,28 @@
 class Stack
-    # this runs every time we do Stack.new
-    # "constructor"
-    def initialize
-        # something to store the things we put in...
-        @storage = []
-    end
-
-    def empty?
-        @storage.empty?
-    end
-
-    def push a_thing
-        # store it in @storage
-        @storage << a_thing
+    def push item
+        temp = @root
+        @root = Node.new
+        @root.value = item
+        @root.next = temp
     end
 
     def pop
-        # return the 'top thing' on the stack
-        @storage.delete_at(-1)
+        return nil if @root.nil?
+        temp = @root.value # save the 'top' value
+        @root = @root.next # move what the root is pointing to
+        return temp # return the 'top' value
     end
+
+    def empty?
+        @root == nil
+    end
+
+    def initialize
+        @root = nil
+    end
+end
+
+class Node
+    attr_accessor :value
+    attr_accessor :next
 end
